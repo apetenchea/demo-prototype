@@ -39,7 +39,7 @@ function shutdownLocalCluster() {
 # start local cluster
 function startLocalCluster() {
   (
-    ARANGODB_FOLDER="/home/apetenchea/work/branches/arangodb1/"
+    ARANGODB_FOLDER="/home/apetenchea/work/arangodb/"
     cd $ARANGODB_FOLDER;
     local servers="${1:-8}";
     bash "$ARANGODB_FOLDER/scripts/startLocalCluster.sh" -d "$servers";

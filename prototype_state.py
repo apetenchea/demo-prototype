@@ -1,4 +1,5 @@
 import sys
+import json
 import httpx
 import random
 import numpy as np
@@ -195,18 +196,14 @@ def parse_log_info():
 def set_leader(new_leader):
     url = f'{COORD_URL}/{REPLICATED_STATE_URL}/{STATE_ID}/leader/{new_leader}'
     r = httpx.post(url, timeout=300)
-    if r.is_success:
+    if r.is_error:
         print(r.json())
-    else:
-        print(r.text)
 
 
 def replace_participant(old, new):
     url = f'{COORD_URL}/{REPLICATED_STATE_URL}/{STATE_ID}/participant/{old}/replace-with/{new}'
     r = httpx.post(url, timeout=300)
-    if r.is_success:
-        print(r.json())
-    else:
+    if r.is_error:
         print(r.text)
 
 
@@ -230,26 +227,22 @@ def get_endpoints():
         print(r.text)
 
 
-def replace_all():
-    r = httpx.get(f'{COORD_URL}/{PROTOTYPE_STATE_URL}', timeout=600)
-    if r.is_success:
-        status = r.json()
-        participants = list(status['result']['participants'].keys())
-    else:
-        print(r.text)
+def get_participants():
+    logger = logging.getLogger('get_participants')
+    r = httpx.get(f'{COORD_URL}/{REPLICATED_LOG_URL}', timeout=600)
+    if r.is_error:
+        logger.error(r.text)
         return
+    status = r.json()
+    return list(status['result']['participants'].keys())
+
+
+def get_unused():
+    participants = get_participants()
     endpoints = get_endpoints()
-    mapping = {}
-    idx = 0
-    for e in endpoints.keys():
-        if e not in participants:
-            mapping[participants[idx]] = e
-            idx += 1
-            if idx == len(participants):
-                break
-    for k, v in mapping.items():
-        print(f'Replacing {k} with {v}')
-        replace_participant(k, v)
+    unused = [e for e in endpoints if e not in participants]
+    for p in unused:
+        print(p)
 
 
 def get_port(server):
@@ -268,5 +261,9 @@ if __name__ == '__main__':
             log_tail()
     elif sys.argv[1] == 'get_port':
         print(get_port(sys.argv[2]))
+    elif sys.argv[1] == 'replace_participant':
+        replace_participant(sys.argv[2], sys.argv[3])
+    elif sys.argv[1] == 'set_leader':
+        set_leader(sys.argv[2])
     else:
         locals()[sys.argv[1]]()
