@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python prototype_state.py get_unused
+python3 prototype_state.py get_unused
