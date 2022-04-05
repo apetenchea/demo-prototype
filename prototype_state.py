@@ -4,7 +4,7 @@ import random
 import numpy as np
 from tqdm import tqdm
 from tabulate import tabulate
-from colorama import Fore, init
+from colorama import Fore
 import logging
 import socket
 import json
@@ -308,7 +308,6 @@ def get_port(server):
 
 
 if __name__ == '__main__':
-    init()
     if sys.argv[1] == 'chaos':
         chaos()
     elif sys.argv[1] == 'get_unused':

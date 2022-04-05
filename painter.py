@@ -21,7 +21,6 @@ def serve():
                         if not data:
                             break
                         x = json.loads(data.decode('utf8').strip())
-                        leader = x['leader']
                         values = x['commit']
                         new_keys = values.keys()
                         if new_keys != keys:
@@ -29,9 +28,11 @@ def serve():
                             keys = set(new_keys)
                         names = [i[5:11] for i in values.keys()]
                         colors = ['grey'] * len(names)
-                        # colors[list(values.keys()).index(leader)] = 'blue'
                         idx = list(values.values())
 
+                        plt.title('Commit Index')
+                        plt.xlabel('servers')
+                        plt.ylabel('index')
                         plt.bar(names, idx, color=colors)
                         plt.pause(0.5)
                         plt.draw()

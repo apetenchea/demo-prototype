@@ -1,3 +1,3 @@
 #!/bin/bash
 
-watch --color -t -n 1 'python prototype_state.py parse_log_info'
+watch -t -n 1 'python3 prototype_state.py parse_log_info; echo; date'
