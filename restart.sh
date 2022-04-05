@@ -4,4 +4,4 @@ source ./process.sh
 
 shutdownLocalCluster
 startLocalCluster
-python prototype_state.py create_prototype_state
+python3 prototype_state.py create_prototype_state

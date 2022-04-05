@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python prototype_state.py chaos
+python3 prototype_state.py chaos

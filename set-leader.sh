@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python prototype_state.py set_leader "$1"
+python3 prototype_state.py set_leader "$1"
