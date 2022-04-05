@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ARANGODB_FOLDER="/home/apetenchea/work/arangodb/"
+
 # get pid of process listening on port
 function portpid() {
   lsof -iTCP:"$1" -sTCP:LISTEN -t
@@ -39,8 +41,7 @@ function shutdownLocalCluster() {
 # start local cluster
 function startLocalCluster() {
   (
-    ARANGODB_FOLDER="/home/apetenchea/work/arangodb/"
-    cd $ARANGODB_FOLDER;
+    cd $ARANGODB_FOLDER || exit 1
     local servers="${1:-8}";
     bash "$ARANGODB_FOLDER/scripts/startLocalCluster.sh" -d "$servers";
   )
