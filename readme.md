@@ -14,7 +14,7 @@ Before using these scripts edit your `arangodb` path in `process.sh`. Make sure 
 
 Demo
 ====
-For extra fun do `python3 painter.py`
+For extra fun do `python3 painter.py`, but this is optional
 
 1) start a cluster and create a replicated state
 2) start `watchlog`
