@@ -21,9 +21,10 @@ For extra fun do `python3 painter.py`, but this is optional
 3) start `chaos`
 4) kill a follower
 5) bring the follower back up
-6) kill the leader - successful election
-7) kill the leader again - unsuccessful election
-8) bring back one of the dead servers - successful election
-9) bring back the other dead server
-10) replace the leader with an unused server
-11) replace all
+6) set the leader as the new follower - leader exchange
+7) kill the leader - successful election
+8) kill the leader again - unsuccessful election
+9) bring back one of the dead servers - successful election
+10) bring back the other dead server
+11) replace the leader with an unused server
+12) replace all
