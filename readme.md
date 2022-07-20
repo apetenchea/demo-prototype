@@ -1,5 +1,7 @@
 Useful stuff for doing a demo on Replicated State Machines, [@arangodb](https://github.com/arangodb/arangodb). 
 
+**Replicated States API might be modified in the future**
+
 Before using these scripts edit your `arangodb` path in `process.sh`. Make sure there's a `build` folder in there.
 
 - restart.sh - restarts the cluster and creates a state machine
